@@ -1,0 +1,754 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #15202b;
+  color: #f7f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.4;
+  overflow-y: scroll;
+}
+
+a {
+  color: #1d9bf0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* App container */
+.app-container {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+/* Authentication Layout (Login / Register) */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+}
+
+.auth-card {
+  background-color: #1e2732;
+  border: 1px solid #38444d;
+  border-radius: 16px;
+  padding: 30px;
+  width: 100%;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.15) 0px 4px 6px -2px;
+}
+
+.auth-logo {
+  font-size: 2.5rem;
+  color: #1d9bf0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.auth-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.auth-link {
+  margin-top: 20px;
+  text-align: center;
+  color: #8899a6;
+}
+
+/* Form Styles */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #8899a6;
+  margin-bottom: 6px;
+  padding-left: 2px;
+}
+
+.form-control {
+  background-color: #15202b;
+  border: 1px solid #38444d;
+  border-radius: 8px;
+  color: #f7f9fa;
+  font-size: 1rem;
+  padding: 12px;
+  min-height: 48px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.form-control:focus {
+  border-color: #1d9bf0;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(29, 155, 240, 0.1);
+}
+
+.form-control::placeholder {
+  color: #8899a6;
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input-wrapper .form-control {
+  padding-right: 48px;
+}
+
+.btn-toggle-password {
+  background: none;
+  border: none;
+  color: #8899a6;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.btn-toggle-password:hover {
+  color: #f7f9fa;
+}
+
+/* Buttons */
+.btn {
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 12px 24px;
+  text-align: center;
+  transition: background-color 0.2s, transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background-color: #1d9bf0;
+  color: #fff;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #1a8cd8;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 1px solid #38444d;
+  color: #f7f9fa;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-danger {
+  background-color: #f4212e;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #cb1b26;
+}
+
+.error-message {
+  background-color: rgba(244, 33, 46, 0.1);
+  border: 1px solid #f4212e;
+  border-radius: 8px;
+  color: #f4212e;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+.success-message {
+  background-color: rgba(0, 186, 124, 0.1);
+  border: 1px solid #00ba7c;
+  border-radius: 8px;
+  color: #00ba7c;
+  font-size: 0.9rem;
+  margin-bottom: 20px;
+  padding: 10px 12px;
+  text-align: center;
+}
+
+/* Visually Hidden Helper (SEO/A11y) */
+.visually-hidden {
+  position: absolute;
+  clip-path: inset(50%);
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  white-space: nowrap;
+}
+
+/* Dashboard / Main Application Layout */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 250px 1fr 290px;
+  width: 100%;
+  gap: 0;
+  min-height: 100vh;
+}
+
+@media (max-width: 1000px) {
+  .dashboard-layout {
+    grid-template-columns: 80px 1fr;
+  }
+  .right-sidebar {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+    padding-bottom: 60px;
+  }
+  .left-sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #15202b;
+    border-top: 1px solid #38444d;
+    border-right: none;
+    z-index: 10;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0;
+  }
+  .sidebar-nav {
+    flex-direction: row !important;
+    width: 100%;
+    justify-content: space-around;
+  }
+  .sidebar-link-text, .sidebar-logo, .sidebar-profile-info {
+    display: none;
+  }
+  .sidebar-item {
+    padding: 10px !important;
+    margin: 0 !important;
+  }
+}
+
+/* Left Sidebar */
+.left-sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 12px;
+  border-right: 1px solid #38444d;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  justify-content: space-between;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  font-size: 1.8rem;
+  color: #1d9bf0;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  font-weight: 900;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 16px;
+  border-radius: 9999px;
+  color: #f7f9fa;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: none;
+  background: transparent;
+  width: fit-content;
+}
+
+.sidebar-item:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-item.active {
+  color: #1d9bf0;
+}
+
+.sidebar-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 9999px;
+  margin-top: auto;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sidebar-profile:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(29, 155, 240, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #1d9bf0;
+  font-size: 1.1rem;
+  border: 1px solid #38444d;
+}
+
+.sidebar-profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.profile-username {
+  color: #8899a6;
+  font-size: 0.85rem;
+}
+
+/* Center Content Area */
+.main-content {
+  border-right: 1px solid #38444d;
+  min-height: 100vh;
+}
+
+.view-header {
+  position: sticky;
+  top: 0;
+  background-color: rgba(21, 32, 43, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 16px;
+  border-bottom: 1px solid #38444d;
+  z-index: 5;
+}
+
+.view-header h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+/* Compose Tweet Area */
+.compose-card {
+  padding: 16px;
+  border-bottom: 1px solid #38444d;
+  display: flex;
+  gap: 12px;
+}
+
+.compose-textarea {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: #f7f9fa;
+  font-size: 1.25rem;
+  resize: none;
+  min-height: 80px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  outline: none;
+}
+
+.compose-textarea::placeholder {
+  color: #8899a6;
+}
+
+.compose-actions {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #38444d;
+  padding-top: 12px;
+  margin-top: 10px;
+}
+
+.compose-actions .btn {
+  font-size: 0.9rem;
+  padding: 8px 16px;
+}
+
+/* Tweet Feed & List Items */
+.tweet-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.tweet-card {
+  padding: 16px;
+  border-bottom: 1px solid #38444d;
+  display: flex;
+  gap: 12px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.tweet-card:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+.tweet-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tweet-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.tweet-author {
+  font-weight: 700;
+  color: #f7f9fa;
+}
+
+.tweet-username {
+  color: #8899a6;
+}
+
+.tweet-dot {
+  color: #8899a6;
+  font-size: 0.8rem;
+}
+
+.tweet-time {
+  color: #8899a6;
+}
+
+.tweet-text {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  word-break: break-word;
+}
+
+.tweet-footer {
+  display: flex;
+  gap: 40px;
+  color: #8899a6;
+}
+
+.tweet-stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+}
+
+.tweet-stat:hover {
+  color: #1d9bf0;
+}
+
+.tweet-delete-container {
+  margin-left: auto;
+}
+
+.btn-icon-delete {
+  background: transparent;
+  border: none;
+  color: #8899a6;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-icon-delete:hover {
+  background-color: rgba(244, 33, 46, 0.1);
+  color: #f4212e;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar-widget {
+  background-color: #1e2732;
+  border-radius: 16px;
+  padding: 16px;
+  border: 1px solid #38444d;
+}
+
+.widget-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #38444d;
+  padding-bottom: 8px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.95rem;
+}
+
+.stat-item-label {
+  color: #8899a6;
+}
+
+.stat-item-value {
+  font-weight: 700;
+}
+
+/* Connections Grid / List (Followers / Following) */
+.connection-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.connection-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border-bottom: 1px solid #38444d;
+}
+
+.connection-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.connection-name {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* Modal Overlay & Card (Tweet Details View) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 20px;
+}
+
+.modal-card {
+  background-color: #1e2732;
+  border: 1px solid #38444d;
+  border-radius: 16px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  animation: modal-fadeIn 0.2s ease-out;
+}
+
+@keyframes modal-fadeIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #38444d;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: #f7f9fa;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.modal-body {
+  overflow-y: auto;
+  padding: 20px;
+}
+
+/* Details Section inside Modal */
+.details-author-sec {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.details-tweet-text {
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-bottom: 16px;
+  word-break: break-word;
+}
+
+.details-tweet-time {
+  color: #8899a6;
+  font-size: 0.9rem;
+  border-bottom: 1px solid #38444d;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.details-stats-bar {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #38444d;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+}
+
+.details-stat {
+  color: #8899a6;
+}
+
+.details-stat span {
+  color: #f7f9fa;
+  font-weight: 700;
+}
+
+/* Tab Bar inside Modal */
+.modal-tabs {
+  display: flex;
+  border-bottom: 1px solid #38444d;
+  margin-bottom: 16px;
+}
+
+.modal-tab {
+  flex: 1;
+  text-align: center;
+  padding: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  color: #8899a6;
+  border-bottom: 2px solid transparent;
+}
+
+.modal-tab.active {
+  color: #1d9bf0;
+  border-bottom-color: #1d9bf0;
+}
+
+/* Modal Tab Content List */
+.modal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-list-item {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reply-item-author {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.reply-item-text {
+  color: #f7f9fa;
+  font-size: 0.95rem;
+}
+
+.empty-state {
+  text-align: center;
+  color: #8899a6;
+  padding: 20px;
+  font-style: italic;
+}

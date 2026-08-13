@@ -100,7 +100,7 @@ app.get('/user/tweets/feed/', authenticateToken, async (request, response) => {
   const {userId} = request
 
   const query = `
-      SELECT u.username, t.tweet, t.date_time AS dateTime
+      SELECT u.username, t.tweet, t.date_time AS dateTime, t.tweet_id AS tweetId
       FROM follower f
       JOIN tweet t ON f.following_user_id = t.user_id
       JOIN user u ON u.user_id = t.user_id
@@ -236,6 +236,7 @@ app.get('/user/tweets/', authenticateToken, async (request, response) => {
   const query = `
       SELECT
         t.tweet,
+        t.tweet_id AS tweetId,
         COUNT(DISTINCT l.like_id) AS likes,
         COUNT(DISTINCT r.reply_id) AS replies,
         t.date_time AS dateTime
